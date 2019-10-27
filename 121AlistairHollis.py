@@ -1,21 +1,24 @@
 #-----import statements-----
 import turtle as trtl
 import random
+import time
 #-----game configuration-----
-font_setup = ("Arial", 20, "normal")
+font_setup = ("impact", 20, "normal")
 timer = 10
 counter_interval = 1000   #1000 represents 1 second
 size = 3
-score = 1
+figure = "circle"
+score = 0
 speed = 0
 wn = trtl.Screen()
 
 #-----initialize turtle-----
+target = trtl.Turtle()
+target.shape(figure)
 counter =  trtl.Turtle()
 scoreman = trtl.Turtle()
-target = trtl.Turtle()
-scoreman.ht()
-scoreman.pu()
+scoreman.hideturtle()
+scoreman.penup()
 target.pu()
 target.speed(speed)
 scoreman.goto(-360,350)
@@ -48,15 +51,26 @@ def score_change():
     scoreman.write("Score: " + str(score), align="center", font=font_setup)
 def game_over():
     target.ht()
+    counter.clear()
     target.goto(9001,9001)
+    counter.goto(0,0)
+    font_setup = ("impact", 70, "normal")
+    counter.write("Time's Up", font=font_setup)
     while True:
       wn.bgcolor("red")
+      time.sleep(0.2)
       wn.bgcolor("orange")
+      time.sleep(0.2)
       wn.bgcolor("yellow")
+      time.sleep(0.2)
       wn.bgcolor("green")
+      time.sleep(0.2)
       wn.bgcolor("blue")
+      time.sleep(0.2)
       wn.bgcolor("indigo")
-      wn.bgcolor("violet")
+      time.sleep(0.2)
+      wn.bgcolor("purple")
+      time.sleep(0.2)
 
 def target_move():
 
@@ -65,12 +79,7 @@ def target_move():
 
   target.goto(randx, randy)
 
-
-
-
 #---------events---------
 target.onclick(target_clicked)
-
 wn.ontimer(countdown, counter_interval)
 wn.mainloop()
-
